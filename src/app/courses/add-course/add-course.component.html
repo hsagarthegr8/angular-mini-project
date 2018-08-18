@@ -1,3 +1,36 @@
-<p>
-  add-course works!
-</p>
+<form [formGroup]='courseForm' (submit)='onSubmit()'>
+  <div class="row form-group">
+      <div class="col-sm-2">
+        Course Name:
+      </div>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+      <div *ngIf="courseForm.controls['name'].touched && !courseForm.controls['name'].valid">
+        <span *ngIf="courseForm.controls['name'].hasError('required')">
+          Course Name is required
+        </span>
+        <span *ngIf="courseForm.controls['name'].hasError('pattern')">
+          Course Name cannot contain any special character
+        </span>
+      </div>
+    </div>
+
+    
+
+    <div class="row form-group">
+      <div class="col-sm-2">
+        Course Duration:
+      </div>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" formControlName="duration">
+      </div>
+      <div *ngIf="courseForm.controls['duration'].touched && !courseForm.controls['duration'].valid">
+            <span *ngIf="courseForm.controls['duration'].hasError('required')">
+              Course Duration is required
+            </span>
+          </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success" [disabled]="!courseForm.valid" >Add Course</button>
+
+</form>

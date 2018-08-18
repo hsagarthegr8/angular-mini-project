@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms'
+
+import { CoursesService } from '../courses.service'
 
 @Component({
   selector: 'app-add-course',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private service: CoursesService) { }
+
+  courseForm = this.fb.group({
+    name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]],
+    duration: ['', [Validators.required]]
+  })
+
+
+
+  onSubmit() {
+    this.service.addCourse(this.courseForm.value)
+    this.courseForm.reset()
   }
 
 }
