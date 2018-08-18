@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs'
 
-import { Course } from './courses.interface'
+import { Course } from './course.interface'
 import { courses } from './courses'
 
 @Injectable({

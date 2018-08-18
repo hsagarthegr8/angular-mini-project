@@ -1,3 +1,3 @@
-<p>
-  courses-json works!
-</p>
+<ul *ngFor="let course of courses">
+  <li>{{course.name | lowercase }} {{course.price | currency:' INR ':code:'1.2-2'}}</li>
+</ul>
