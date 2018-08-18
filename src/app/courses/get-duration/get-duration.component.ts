@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../courses.service';
+import {Course} from '../course.interface'
 
 @Component({
   selector: 'app-get-duration',
@@ -9,7 +10,7 @@ import { CoursesService } from '../courses.service';
 export class GetDurationComponent implements OnInit {
 
   course: string = '';
-  duration: string;
+  result:Course;
   formSubmitted: boolean = false;
   constructor(private coursesService: CoursesService) { }
 
@@ -17,7 +18,7 @@ export class GetDurationComponent implements OnInit {
   }
 
   getDuration() {
-    this.coursesService.getDuration(this.course).subscribe(duration => this.duration = duration);
+    this.coursesService.getDuration(this.course).subscribe(result => this.result = result);
     this.formSubmitted = true;
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of} from 'rxjs'
+import { Observable, of } from 'rxjs'
 
 import { Course } from './course.interface'
 import { courses } from './courses'
@@ -15,13 +15,13 @@ export class CoursesService {
     return of<Course[]>(courses)
   }
 
-  addCourse(course: Course ) {
+  addCourse(course: Course) {
     courses.push(course)
   }
 
   getDuration(name: string) {
-    let result=courses.find((course:Course)=>course.name == name)
-    let duration=result?result.duration:undefined;
-    return of(duration)
+    let result = courses.find((course: Course) => course.name == name)
+    result = result ? result : undefined;
+    return of<Course>(result)
   }
 }

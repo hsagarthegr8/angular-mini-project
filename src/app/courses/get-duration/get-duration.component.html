@@ -13,11 +13,11 @@
   <br/>
 
   <div *ngIf='formSubmitted'>
-    <div *ngIf="duration!=undefined">
-      <p>The duration for course <i>{{course}}</i> is <b><i>{{duration}}</i></b></p>
+    <div *ngIf="result">
+      <p>The duration for course <i>{{result.name}}</i> is <b><i>{{result.duration}} Months</i></b></p>
     </div>
 
-    <div *ngIf="duration==undefined">
+    <div *ngIf="result==undefined">
       <h3>The given course doesn't exist.</h3>
     </div>
   </div>
