@@ -1,3 +1,25 @@
-<p>
-  get-duration works!
-</p>
+
+<div class='add'>
+  <br/>
+  <form #getDurationForm='ngForm' (submit)='getDuration()'>
+    <h3>Enter Course Name</h3>
+
+    <input type="text" autocomplete="off" name="courseName" required [(ngModel)]='course' pattern='[\w\s]{1,}' #courseName='ngModel'>
+
+    <h5 *ngIf='courseName.dirty && courseName?.errors?.pattern'>Type a valid course name!!</h5>
+    <h5 *ngIf='courseName.touched && courseName?.errors?.required'>Course Name should not be empty!!</h5>
+
+    <button type="submit" value="Get Duration" [disabled]='getDurationForm.invalid'>Get Duration</button>
+  </form>
+  <br/>
+
+  <div *ngIf='formSubmitted'>
+    <div *ngIf="duration!=undefined">
+      <p>The duration for course <i>{{course}}</i> is <b><i>{{duration}}</i></b></p>
+    </div>
+
+    <div *ngIf="duration==undefined">
+      <h3>The given course doesn't exist.</h3>
+    </div>
+  </div>
+</div>

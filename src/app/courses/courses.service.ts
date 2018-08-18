@@ -19,8 +19,9 @@ export class CoursesService {
     courses.push(course)
   }
 
-  getDuraton(name: string) {
-    return of(courses.find((course:Course)=>course.name == name).duration)
+  getDuration(name: string) {
+    let result=courses.find((course:Course)=>course.name == name)
+    let duration=result?result.duration:undefined;
+    return of(duration)
   }
 }
-
