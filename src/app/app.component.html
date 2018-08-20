@@ -5,11 +5,11 @@
     </div>
     <div class="panel-body">
       <ul class="nav nav-pills pull-right">
-        <li [class.active]="activeLinkValue=='courses'">
-          <a  routerLink="/courses" (click)="activeLink('courses')">Courses</a>
+        <li class="nav-link" routerLinkActive="active" routerLink="/courses">
+          <a routerLink="/courses">Courses</a>
         </li>
-        <li [class.active]="activeLinkValue=='Json'">
-          <a routerLink="/courses-json" (click)="activeLink('Json')">Courses with JSON</a>
+        <li class="nav-link" routerLinkActive="active" routerLink="/courses-json" >
+          <a routerLink="/courses-json">Courses with JSON</a>
         </li>
       </ul>
       <router-outlet></router-outlet>
