@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mini';
+  activeLinkValue:string='courses';
+  activeLink(val){
+    this.activeLinkValue=val;
+  }
 }

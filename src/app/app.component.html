@@ -1,9 +1,22 @@
-<div>
-  <h1>Hello Course Play Application</h1>
-  <nav>
-    <a routerLink="/courses">Courses</a>&nbsp;
-    <a routerLink="/courses-json">Courses with JSON</a>
-  </nav>
-  <router-outlet>
-  </router-outlet>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel panel-heading">
+      <h1>Hello Course Play Application</h1>
+    </div>
+    <div class="panel-body">
+      <ul class="nav nav-pills pull-right">
+        <li [class.active]="activeLinkValue=='courses'">
+          <a  routerLink="/courses" (click)="activeLink('courses')">Courses</a>
+        </li>
+        <li [class.active]="activeLinkValue=='Json'">
+          <a routerLink="/courses-json" (click)="activeLink('Json')">Courses with JSON</a>
+        </li>
+      </ul>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="panel-footer">
+      <p><b>&copy;Developed By: </b>Akhil Kshirasagara, Ganesh Patil, Himanshu Sagar, Harshita Shrivastava, Himani Jain, Kameshwar Gupta & Ushasravani Grandhi
+      </p>
+    </div>
+  </div>
 </div>

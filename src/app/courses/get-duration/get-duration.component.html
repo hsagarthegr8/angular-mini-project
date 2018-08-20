@@ -1,24 +1,33 @@
 <div class='add'>
   <br/>
   <form #getDurationForm='ngForm' (submit)='getDuration()'>
-    <h3>Enter Course Name</h3>
+    <div class="form-group row">
+      <div class="col-sm-2">
+        Enter Course Name:
+      </div>
 
-    <input type="text" autocomplete="off" name="courseName" required [(ngModel)]='course' pattern='[\w\s]{1,}' #courseName='ngModel'>
+      <div class="col-sm-4" [class.has-error]="courseName.touched && courseName.invalid" [class.has-success]="courseName.valid">
+        <input type="text" class="form-control" autocomplete="off" name="courseName" required [(ngModel)]='course' pattern='[\w\s]{1,}' #courseName='ngModel'>
+        <div *ngIf='courseName.errors && (courseName.dirty || courseName.touched)' class="help-block">
+          <div [hidden]='!courseName.errors.pattern'>Type a valid course name!!
+          </div>
+          <div [hidden]='!courseName.errors.required'>Course Name should not be empty!!</div>
+        </div>
+      </div>
+    </div>
 
-    <h5 *ngIf='courseName.dirty && courseName?.errors?.pattern'>Type a valid course name!!</h5>
-    <h5 *ngIf='courseName.touched && courseName?.errors?.required'>Course Name should not be empty!!</h5>
-
-    <button type="submit" value="Get Duration" [disabled]='getDurationForm.invalid'>Get Duration</button>
+      <button type="submit" value="Get Duration" class="btn btn-align" [class.btn-success]="getDurationForm.valid" [disabled]='getDurationForm.invalid'>Get Duration</button>
   </form>
   <br/>
 
   <div *ngIf='formSubmitted'>
-    <div *ngIf="result">
-      <p>The duration for course <i>{{result.name}}</i> is <b><i>{{result.duration}} Months</i></b></p>
+    <hr/>
+    <div *ngIf="result" class="has-success">
+      <h4 class="help-block">The duration for course <i>{{result.name}}</i> is <b><i>{{result.duration}} {{result.time}}</i></b></h4>
     </div>
 
-    <div *ngIf="result==undefined">
-      <h3>The given course doesn't exist.</h3>
+    <div *ngIf="result==undefined" class="has-error">
+      <h4 class="help-block">The given course doesn't exist.</h4>
     </div>
   </div>
-</div>
+  </div>

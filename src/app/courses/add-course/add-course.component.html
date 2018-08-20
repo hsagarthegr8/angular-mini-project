@@ -1,12 +1,12 @@
 <form [formGroup]='courseForm' (submit)='onSubmit()'>
   <div class="row form-group">
-      <div class="col-sm-2">
-        Course Name:
-      </div>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" formControlName="name">
-      </div>
-      <div *ngIf="courseForm.controls['name'].touched && !courseForm.controls['name'].valid">
+    <div class="col-sm-2">
+      Course Name:
+    </div>
+    <div class="col-sm-4" [class.has-error]="courseForm.controls['name'].touched && courseForm.controls['name'].invalid" [class.has-success]="courseForm.controls['name'].valid">
+      <input type="text" class="form-control" formControlName="name">
+      <div *ngIf="(courseForm.controls['name'].touched || courseForm.controls['name'].dirty) && !courseForm.controls['name'].valid"
+        class="help-block">
         <span *ngIf="courseForm.controls['name'].hasError('required')">
           Course Name is required
         </span>
@@ -15,22 +15,42 @@
         </span>
       </div>
     </div>
+  </div>
 
-    
 
-    <div class="row form-group">
-      <div class="col-sm-2">
-        Course Duration:
-      </div>
-      <div class="col-sm-4">
-        <input type="number" class="form-control" formControlName="duration">
-      </div>
-      <div *ngIf="courseForm.controls['duration'].touched && !courseForm.controls['duration'].valid">
-            <span *ngIf="courseForm.controls['duration'].hasError('required')">
-              Course Duration is required
-            </span>
-          </div>
+
+  <div class="row form-group">
+    <div class="col-sm-2">
+      Course Duration:
     </div>
-    <button type="submit" class="btn btn-outline-success" [disabled]="!courseForm.valid" >Add Course</button>
+    <div class="col-sm-4" [class.has-error]="(courseForm.controls['duration'].touched || courseForm.controls['duration'].dirty) && courseForm.controls['duration'].invalid"
+      [class.has-success]="courseForm.controls['duration'].valid">
+
+      <!--Input for Duration-->
+      <input type="number" class="form-control" formControlName="duration">
+
+      <!--Radio button to select duration-->
+      <div class="radio">
+        <label class="radio-inline"><input type="radio" formControlName="time" class="optradio" value="days">Days</label>
+        <label class="radio-inline"><input type="radio" formControlName="time" class="optradio" value="months">Months</label>
+        <label class="radio-inline"><input type="radio" formControlName="time" class="optradio" value="years">Years</label>
+      </div>
+
+      <!--Errors on input-->
+      <div *ngIf="courseForm.controls['duration'].touched && !courseForm.controls['duration'].valid" class="help-block">
+        <span *ngIf="courseForm.controls['duration'].hasError('required')">
+              Course Duration is required
+        </span>
+      </div>
+
+      <!--Error on radio button-->
+      <span *ngIf="courseForm.controls['time'].hasError('required') && courseForm.controls['duration'].valid">
+          Select a radio button
+      </span>
+      
+    </div>
+  </div>
+  <button type="submit" class="btn btn-align" [class.btn-success]="courseForm.valid" [disabled]="!courseForm.valid">Add Course</button>
 
 </form>
+<hr/>

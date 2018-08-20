@@ -16,7 +16,8 @@ export class AddCourseComponent implements OnInit {
 
   courseForm = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9 ]+')]],
-    duration: ['', [Validators.required]]
+    duration: ['', [Validators.required]],
+    time: ['days',[Validators.required]]
   })
 
 

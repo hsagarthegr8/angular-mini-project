@@ -1,4 +1,7 @@
-  li
-{
+li {
     color:blue;
+}
+
+li:hover {
+  font-weight: bold;
 }
