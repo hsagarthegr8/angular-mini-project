@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
-        <h3>List of Courses</h3>
+        <h3>Courses in JSON</h3>
     </div>
   <ul *ngFor="let course of courses" class="list-group row">
-    <li class="list-group-item col-sm-4 col-sm-offset-2 text-center">
+    <li class="course list-group-item col-sm-4 col-sm-offset-1 text-center">
       {{course.name | lowercase }} {{course.price | currency:' INR ':code:'1.2-2'}}
     </li>
   </ul>
